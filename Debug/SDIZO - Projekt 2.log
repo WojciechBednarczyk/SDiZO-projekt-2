@@ -1,5 +1,6 @@
 ﻿  Graf.cpp
-C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(101,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(129,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(149,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(75,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(148,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(175,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(203,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
   SDIZO - Projekt 2.vcxproj -> C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Debug\SDIZO - Projekt 2.exe

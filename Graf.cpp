@@ -1,7 +1,21 @@
 #include "Graf.h"
 #include<iostream>
 #include<vector>
+#include<list>
 using namespace std;
+
+
+
+//struct porownaj_krawedzie
+//{
+//	bool operator () (Krawedz& krawedz1, Krawedz& krawedz2)
+//	{
+//		if (krawedz1.waga > krawedz2.waga) return true;
+//		if (krawedz1.waga < krawedz2.waga) return false;
+//
+//		return false;
+//	}
+//};
 
 
 Graf::Graf(int ilosc_wierzcholkow, int ilosc_krawedzi)
@@ -14,6 +28,8 @@ Graf::Graf(int ilosc_wierzcholkow, int ilosc_krawedzi)
 	macierz_wynikowa = new int* [ilosc_wierzcholkow];
 	for (int i = 0; i < ilosc_wierzcholkow; i++)
 	{
+		vector<int> sasiedzi ;
+		lista_sasiedztwa.push_back(sasiedzi);
 		koszt_wierzcholka.push_back(1000000);
 		macierz_incydencji[i] = new int[ilosc_krawedzi];
 		macierz_wynikowa[i] = new int[ilosc_wierzcholkow-1];
@@ -39,6 +55,7 @@ Graf::~Graf()
 
 void Graf::wyswietl_macierz()
 {
+	cout << "Macierz incydencji:\n\n";
 	for (int i = 0; i < ilosc_wierzcholkow; i++)
 	{
 		for (int j = 0; j < ilosc_krawedzi; j++)
@@ -49,19 +66,51 @@ void Graf::wyswietl_macierz()
 	}
 }
 
+void Graf::wyswietl_liste()
+{
+	cout << "Lista sasiedztwa:\n\n";
+	for (int i = 0; i < ilosc_wierzcholkow; i++)
+	{
+		cout << "Wierzcholek " << i << ": ";
+		for (int j = 0; j < lista_sasiedztwa[i].size(); j++)
+		{
+			cout << lista_sasiedztwa[i][j]<<" ";
+		}
+		cout << endl;
+	}
+}
+
+
 void Graf::dodaj_krawedz(char wybrany_problem,int krawedz,int wierzcholek_poczatkowy, int wierzcholek_koncowy,int waga)
 {
+	Krawedz nowa_krawedz;
+
 	switch (wybrany_problem)
 	{
+
+	//grafy nieskierowane
 	case '1':
 		macierz_incydencji[wierzcholek_koncowy][krawedz] = 1;
 		macierz_incydencji[wierzcholek_poczatkowy][krawedz] = 1;
 		wagi_krawedzi.push_back(waga);
+		nowa_krawedz.wierzcholek_poczatkowy = wierzcholek_poczatkowy;
+		nowa_krawedz.wierzcholek_koncowy = wierzcholek_koncowy;
+		nowa_krawedz.waga = waga;
+		lista_krawedzi.push_back(nowa_krawedz);
+		lista_sasiedztwa[wierzcholek_poczatkowy].push_back(wierzcholek_koncowy);
+		lista_sasiedztwa[wierzcholek_koncowy].push_back(wierzcholek_poczatkowy);
 		break;
+
+	//grafy skierowane
 	case '2':
 		macierz_incydencji[wierzcholek_koncowy][krawedz] = -1;
 		macierz_incydencji[wierzcholek_poczatkowy][krawedz] = 1;
 		wagi_krawedzi.push_back(waga);
+		nowa_krawedz.wierzcholek_poczatkowy = wierzcholek_poczatkowy;
+		nowa_krawedz.wierzcholek_koncowy = wierzcholek_koncowy;
+		nowa_krawedz.waga = waga;
+		lista_krawedzi.push_back(nowa_krawedz);
+		lista_sasiedztwa[wierzcholek_poczatkowy].push_back(wierzcholek_koncowy);
 		break;
 	default:
 		break;
@@ -82,8 +131,6 @@ void Graf::algorytm_Prima()
 	for (int i = 0; i < ilosc_wierzcholkow; i++)
 	{
 		najmniejsza_waga = 100000;
-		macierz_wynikowa[najmniejszy_koszt_wierzcholek][i]=1;
-		cout << "Wybrany wierzcholek:" << najmniejszy_koszt_wierzcholek << endl;
 		for (int j = 0; j < ilosc_krawedzi; j++)
 		{
 			szukany_wierzcholek = 0;
@@ -122,7 +169,6 @@ void Graf::algorytm_Prima()
 		for (int k = 0; k < ilosc_wierzcholkow; k++)
 		{
 			czy_zbadany = false;
-			cout << koszt_wierzcholka[k] << endl;
 			if (koszt_wierzcholka[k] < najmniejsza_waga)
 			{
 				//sprawdzamy czy wierzcholek byl juz badany
@@ -143,8 +189,16 @@ void Graf::algorytm_Prima()
 			}
 				
 		}
-		macierz_wynikowa[najmniejszy_koszt_wierzcholek][i] = 1;
-		cout << "\n\n";
+		//ustawiamy w macierzy wierzcholek koncowy i poczatkowy na 1
+		for (list<Krawedz>::iterator iter = lista_krawedzi.begin(); iter != lista_krawedzi.end(); iter++)
+		{
+			if ((iter->wierzcholek_koncowy == najmniejszy_koszt_wierzcholek || iter->wierzcholek_poczatkowy) && iter->waga == najmniejsza_waga)
+			{
+				macierz_wynikowa[iter->wierzcholek_poczatkowy][i] = 1;
+				macierz_wynikowa[iter->wierzcholek_koncowy][i] = 1;
+				break;
+			}
+		}
 	}
 	for (int i = 0; i < koszt_wierzcholka.size(); i++)
 	{
@@ -160,4 +214,8 @@ void Graf::algorytm_Prima()
 		cout << endl;
 	}
 
+}
+
+void Graf::algorytm_Kruskala()
+{
 }

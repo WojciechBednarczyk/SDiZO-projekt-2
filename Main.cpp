@@ -42,24 +42,13 @@ int main()
 		plik >> wierzcholek_poczatkowy;
 		plik >> wierzcholek_koncowy;
 		plik >> waga;
-		graf.dodaj_krawedz(wybrany_problem,i, wierzcholek_poczatkowy, wierzcholek_koncowy,waga);
-		graf.wyswietl_macierz();
-		cout << endl;
-		
-		//krawedz nowa_krawedz;
-		//nowa_krawedz.waga = waga;
-		//nowa_krawedz.wierzcholek_poczatkowy = wierzcholek_poczatkowy;
-		//nowa_krawedz.wierzcholek_koncowy = wierzcholek_koncowy;
-		//kolejkaPriorytetowa.push(nowa_krawedz);
+		graf.dodaj_krawedz(wybrany_problem, i, wierzcholek_poczatkowy, wierzcholek_koncowy, waga);
 	}
-	/*for (int i = 0; i < ilosc_krawedzi; i++)
-	{
-		cout << kolejkaPriorytetowa.top().waga;
-		kolejkaPriorytetowa.pop();
-	}*/
 	cout << endl;
 	graf.wyswietl_macierz();
-	cout << "\n\n";
+	cout << endl;
+	graf.wyswietl_liste();
+	cout << endl;
 	graf.algorytm_Prima();
 	
 }
