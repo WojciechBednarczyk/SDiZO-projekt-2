@@ -10,6 +10,16 @@ public:
 	{
 		int wierzcholek_poczatkowy, wierzcholek_koncowy, waga;
 	};
+	struct porownaj_krawedzie
+	{
+		bool operator () (Krawedz& krawedz1, Krawedz& krawedz2)
+		{
+			if (krawedz1.waga < krawedz2.waga) return true;
+			if (krawedz1.waga > krawedz2.waga) return false;
+
+			return false;
+		}
+	};
 
 	Graf(int ilosc_wierzcholkow, int ilosc_krawedzi);
 	~Graf();
@@ -27,6 +37,8 @@ private:
 	vector<int> koszt_wierzcholka;
 	vector<int> zbadane_wierzcholki;
 	vector<vector<int>> lista_sasiedztwa;
+	vector<vector<int>> lista_wynikowa;
+	vector<vector<int>> zbiory;
 	list<Krawedz> lista_krawedzi;
 	
 };

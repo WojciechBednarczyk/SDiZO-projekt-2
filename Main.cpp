@@ -6,21 +6,21 @@ using namespace std;
 
 
 
-struct krawedz
-{
-	int wierzcholek_poczatkowy, wierzcholek_koncowy, waga;
-};
-struct porownaj_krawedzie
-{
-	bool operator () (krawedz &krawedz1, krawedz &krawedz2)
-	{
-		if (krawedz1.waga > krawedz2.waga) return true;
-		if (krawedz1.waga < krawedz2.waga) return false;
-		
-		return false;
-	}
-};
-priority_queue < krawedz, std::vector < krawedz >, porownaj_krawedzie> kolejkaPriorytetowa;
+//struct krawedz
+//{
+//	int wierzcholek_poczatkowy, wierzcholek_koncowy, waga;
+//};
+//struct porownaj_krawedzie
+//{
+//	bool operator () (krawedz &krawedz1, krawedz &krawedz2)
+//	{
+//		if (krawedz1.waga > krawedz2.waga) return true;
+//		if (krawedz1.waga < krawedz2.waga) return false;
+//		
+//		return false;
+//	}
+//};
+//priority_queue < krawedz, std::vector < krawedz >, porownaj_krawedzie> kolejkaPriorytetowa;
 int main()
 {
 	int ilosc_wierzcholkow, ilosc_krawedzi;
@@ -48,7 +48,9 @@ int main()
 	graf.wyswietl_macierz();
 	cout << endl;
 	graf.wyswietl_liste();
+	/*cout << endl;
+	graf.algorytm_Prima();*/
 	cout << endl;
-	graf.algorytm_Prima();
+	graf.algorytm_Kruskala();
 	
 }
