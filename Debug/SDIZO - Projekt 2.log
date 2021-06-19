@@ -1,10 +1,13 @@
 ﻿  Graf.cpp
-C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(64,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(138,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(165,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(197,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(217,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(241,22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(320,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(228,7): warning C4101: "wstaw": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(67,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(142,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(169,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(201,20): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(221,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(244,22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(276,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(232,7): warning C4101: "wstaw": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(301,24): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(315,22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(338,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
   SDIZO - Projekt 2.vcxproj -> C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Debug\SDIZO - Projekt 2.exe

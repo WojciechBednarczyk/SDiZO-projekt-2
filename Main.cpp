@@ -50,7 +50,8 @@ int main()
 	graf.wyswietl_liste();
 	/*cout << endl;
 	graf.algorytm_Prima();*/
-	cout << endl;
+	/*cout << endl;
 	graf.algorytm_Kruskala();
-	
+	*/
+	graf.algorytm_Djikstry(0, 3);
 }
