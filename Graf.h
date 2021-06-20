@@ -25,10 +25,14 @@ public:
 	Graf(int losowy, int ilosc_wierzcholkow, int ilosc_krawedzi);
 	~Graf();
 	int get_ilosc_wierzcholkow();
-	
+	int set_ilosc_wierzcholkow(int ilosc_wierzcholkow);
+	int set_ilosc_krawedzi(int ilosc_krawedzi);
+	void stworz_macierz(int ilosc_wierzcholkow, int ilosc_krawedzi);
+	void usun_Graf();
 	void wyswietl_macierz();
 	void wyswietl_liste();
 	void dodaj_krawedz(int krawedz, int wierzcholek_poczatkowy, int wierzcholek_koncowy,int waga);
+	bool sprawdz_krawedz(int wierzcholek_poczatkowy, int wierzcholek_koncowy);
 	void algorytm_Prima();
 	void algorytm_Kruskala();
 	void algorytm_Djikstry(int wierzcholek_poczatkowy,int wierzcholek_koncowy);

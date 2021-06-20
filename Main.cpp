@@ -111,6 +111,31 @@ void menu_Start(Graf &graf)
 		cin >> ilosc_wierzcholkow;
 		cout << "Podaj ilosc krawedzi:";
 		cin >> ilosc_krawedzi;
+		graf.usun_Graf();
+		graf.set_ilosc_wierzcholkow(ilosc_wierzcholkow);
+		graf.set_ilosc_krawedzi(ilosc_krawedzi);
+		graf.stworz_macierz(ilosc_wierzcholkow, ilosc_krawedzi);
+		srand(time(NULL));
+		int wierzcholek_poczatkowy,wierzcholek_koncowy,waga;
+		//losujemy krawedzie
+
+		cout << "Wylosowane krawedzie [Wierzcholek Poczatkowy, Wierzcholek Koncowy, Waga Krawedzi]:\n";
+		for (int i = 0; i < ilosc_krawedzi; i++)
+		{
+			wierzcholek_poczatkowy = rand() % ilosc_wierzcholkow;
+			wierzcholek_koncowy = rand() % ilosc_wierzcholkow;
+			//sprawdzamy czy krawedz istnieje juz w grafie aby uniknac krawedzi wielokrotnych i czy wierzcholki krawedzi sie roznia
+			while (graf.sprawdz_krawedz(wierzcholek_poczatkowy, wierzcholek_koncowy) == true || wierzcholek_koncowy == wierzcholek_poczatkowy)
+			{
+				wierzcholek_poczatkowy = rand() % ilosc_wierzcholkow;
+				wierzcholek_koncowy = rand() % ilosc_wierzcholkow;
+			}
+			waga = (rand() % 10)+1;
+			cout << "Krawedz "<< i <<": " << wierzcholek_poczatkowy << " " << wierzcholek_koncowy << " " << waga << endl;
+		
+			graf.dodaj_krawedz(i,wierzcholek_poczatkowy, wierzcholek_koncowy, waga);
+		}
+		cout << "Stworzono graf\n\n";
 		_getch();
 		menu_Start(graf);
 		break;
