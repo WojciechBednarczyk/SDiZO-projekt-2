@@ -22,14 +22,18 @@ public:
 	};
 
 	Graf(int ilosc_wierzcholkow, int ilosc_krawedzi);
+	Graf(int losowy, int ilosc_wierzcholkow, int ilosc_krawedzi);
 	~Graf();
+	int get_ilosc_wierzcholkow();
+	
 	void wyswietl_macierz();
 	void wyswietl_liste();
-	void dodaj_krawedz(char wybrany_problem,int krawedz, int wierzcholek_poczatkowy, int wierzcholek_koncowy,int waga);
+	void dodaj_krawedz(int krawedz, int wierzcholek_poczatkowy, int wierzcholek_koncowy,int waga);
 	void algorytm_Prima();
 	void algorytm_Kruskala();
 	void algorytm_Djikstry(int wierzcholek_poczatkowy,int wierzcholek_koncowy);
 	void algorytm_Bellmana_Forda(int wierzcholek_poczatkowy, int wierzcholek_koncowy);
+	
 	
 private:
 	int ilosc_wierzcholkow, ilosc_krawedzi;
