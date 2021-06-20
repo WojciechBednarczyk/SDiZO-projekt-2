@@ -120,6 +120,10 @@ void Graf::algorytm_Prima()
 	bool czy_zbadany;
 	int suma = 0;
 	zbadane_wierzcholki.clear();
+	for (int i = 0; i < ilosc_wierzcholkow; i++)
+	{
+		koszt_wierzcholka.push_back(1000000);
+	}
 	koszt_wierzcholka[0] = 0;
 
 	for (int i = 0; i < ilosc_wierzcholkow; i++)
@@ -283,6 +287,12 @@ void Graf::algorytm_Kruskala()
 
 void Graf::algorytm_Djikstry(int wierzcholek_poczatkowy, int wierzcholek_koncowy)
 {
+
+	for (int i = 0; i < ilosc_wierzcholkow; i++)
+	{
+		koszt_wierzcholka.push_back(1000000);
+	}
+	zbadane_wierzcholki.clear();
 	koszt_wierzcholka[wierzcholek_poczatkowy] = 0;
 	int badany_wierzcholek=wierzcholek_poczatkowy;
 	bool czy_zbadany_wierzcholek;
@@ -346,5 +356,71 @@ void Graf::algorytm_Djikstry(int wierzcholek_poczatkowy, int wierzcholek_koncowy
 
 void Graf::algorytm_Bellmana_Forda(int wierzcholek_poczatkowy, int wierzcholek_koncowy)
 {
+	for (int i = 0; i < ilosc_wierzcholkow; i++)
+	{
+		koszt_wierzcholka.push_back(1000000);
+	}
 
+	bool czy_zmiana;
+	koszt_wierzcholka[wierzcholek_poczatkowy] = 0;
+	int* poprzednicy = new int[ilosc_wierzcholkow];
+	for (int i = 0; i < ilosc_wierzcholkow; i++)
+	{
+		poprzednicy[i] = i;;
+	}
+	for (int i = 0; i < ilosc_wierzcholkow; i++)
+	{
+		czy_zmiana = false;
+		for (int j = 0; j < ilosc_wierzcholkow; j++)
+		{
+			if (koszt_wierzcholka[j] == 1000000)
+			{
+				continue;
+			}
+			else
+			{
+				for (list<Krawedz>::iterator iter = lista_krawedzi.begin(); iter != lista_krawedzi.end(); iter++)
+				{
+					if (iter->wierzcholek_poczatkowy == j)
+					{
+						if (iter->waga + koszt_wierzcholka[iter->wierzcholek_poczatkowy]< koszt_wierzcholka[iter->wierzcholek_koncowy])
+						{
+							czy_zmiana = true;
+							koszt_wierzcholka[iter->wierzcholek_koncowy] = iter->waga + koszt_wierzcholka[iter->wierzcholek_poczatkowy];
+							poprzednicy[iter->wierzcholek_koncowy] = iter->wierzcholek_poczatkowy;
+						}
+					}
+				}
+			}
+			
+		}
+		if (czy_zmiana == false)
+		{
+			break;
+		}
+	}
+	for (int  i = 0; i < ilosc_wierzcholkow; i++)
+	{
+		cout << poprzednicy[i] << endl;
+	}
+	cout << endl;
+	int ostatni_wierzcholek = wierzcholek_koncowy;
+	if (poprzednicy[ostatni_wierzcholek] == ostatni_wierzcholek)
+	{
+		cout << "Nie ma polaczenia miedzy wierzcholkiem " << wierzcholek_poczatkowy << " a wierzcholkiem " << wierzcholek_koncowy << endl;
+	}
+	else
+	{
+		cout << "Najkrotsza sciezka od wierzcholka " << wierzcholek_poczatkowy << " do wierzcholka " << wierzcholek_koncowy << " wynosi " << koszt_wierzcholka[wierzcholek_koncowy];
+		cout << endl;
+		cout << "Trasa: ";
+		cout << ostatni_wierzcholek<<" <- ";
+		while (poprzednicy[ostatni_wierzcholek] != wierzcholek_poczatkowy)
+		{
+			cout << poprzednicy[ostatni_wierzcholek] << " <- ";
+			ostatni_wierzcholek = poprzednicy[ostatni_wierzcholek];
+		}
+		cout << wierzcholek_poczatkowy;
+	}
+	
 }

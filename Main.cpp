@@ -4,34 +4,32 @@
 #include<queue>
 using namespace std;
 
-
-
-//struct krawedz
-//{
-//	int wierzcholek_poczatkowy, wierzcholek_koncowy, waga;
-//};
-//struct porownaj_krawedzie
-//{
-//	bool operator () (krawedz &krawedz1, krawedz &krawedz2)
-//	{
-//		if (krawedz1.waga > krawedz2.waga) return true;
-//		if (krawedz1.waga < krawedz2.waga) return false;
-//		
-//		return false;
-//	}
-//};
-//priority_queue < krawedz, std::vector < krawedz >, porownaj_krawedzie> kolejkaPriorytetowa;
-int main()
+void menu_Start()
 {
-	int ilosc_wierzcholkow, ilosc_krawedzi;
-	int wierzcholek_poczatkowy, wierzcholek_koncowy,waga;
-	char wybrany_problem;
+	int wybrany_problem;
 	cout << "SDIZO - zadanie projektowe 2\n";
 	cout << "Autor: Wojciech Bednarczyk\n\n";
 	cout << "Wybierz problem do rozwiazania:\n";
 	cout << "[1] Wyznaczanie minimalnego drzewa rozpinajacego\n";
 	cout << "[2] Wyznaczanie najkrotszej sciezki w grafie\n";
 	cin >> wybrany_problem;
+	switch (wybrany_problem)
+	{
+	case 1:
+		break;
+	case 2:
+		break;
+	default:
+		break;
+	}
+}
+int main()
+{
+	int ilosc_wierzcholkow, ilosc_krawedzi;
+	int wierzcholek_poczatkowy, wierzcholek_koncowy,waga;
+	char wybrany_problem;
+	
+	
 	ifstream plik;;
 	plik.open("dane.txt");
 	plik >> ilosc_wierzcholkow;
@@ -54,4 +52,5 @@ int main()
 	graf.algorytm_Kruskala();
 	*/
 	graf.algorytm_Djikstry(0, 3);
+	//graf.algorytm_Bellmana_Forda(1, 4);
 }
