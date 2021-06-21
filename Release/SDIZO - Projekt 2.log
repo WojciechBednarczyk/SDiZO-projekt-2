@@ -1,7 +1,25 @@
 ﻿  Graf.cpp
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(130,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(152,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(209,24): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(226,25): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(249,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(374,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(181,6): warning C4101: "najmniejsza_waga": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(180,6): warning C4101: "szukany_wierzcholek": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(410,22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(446,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(385,7): warning C4101: "wstaw": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(482,24): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(496,22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Graf.cpp(525,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+  Krawedz.cpp
   Main.cpp
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Main.cpp(118,13): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Main.cpp(155,7): warning C4101: "wybrany_problem": lokalna zmienna, do której nie istnieje odwołanie
+  Wierzcholek.cpp
   Trwa generowanie kodu
-  Previous IPDB and IOBJ mismatch, fall back to full compilation.
-  All 168 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Previous IPDB was built with incompatible compiler, fall back to full compilation.
+  All 346 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Zakończono generowanie kodu
   SDIZO - Projekt 2.vcxproj -> C:\Users\48795\Desktop\SDIZO\Projekt 2\SDIZO - Projekt 2\Release\SDIZO - Projekt 2.exe

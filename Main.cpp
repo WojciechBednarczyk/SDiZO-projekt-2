@@ -81,6 +81,7 @@ void menu_Start(Graf &graf)
 	int wybrany_problem;
 	int ilosc_wierzcholkow;
 	int ilosc_krawedzi;
+	double gestosc_grafu;
 	cout << "Wybierz problem do rozwiazania:\n";
 	cout << "[1] Wyznaczanie minimalnego drzewa rozpinajacego\n";
 	cout << "[2] Wyznaczanie najkrotszej sciezki w grafie\n";
@@ -109,8 +110,10 @@ void menu_Start(Graf &graf)
 	case 4:
 		cout << "Podaj ilosc wierzcholkow:";
 		cin >> ilosc_wierzcholkow;
-		cout << "Podaj ilosc krawedzi:";
-		cin >> ilosc_krawedzi;
+		cout << "Podaj gestosc grafu:";
+		cin >> gestosc_grafu;
+		ilosc_krawedzi = (gestosc_grafu / 100.0) * ((ilosc_wierzcholkow*(ilosc_wierzcholkow-1))/2);
+		cout <<"Ilosc krawedzi:" << ilosc_krawedzi << endl;
 		graf.usun_Graf();
 		graf.set_ilosc_wierzcholkow(ilosc_wierzcholkow);
 		graf.set_ilosc_krawedzi(ilosc_krawedzi);

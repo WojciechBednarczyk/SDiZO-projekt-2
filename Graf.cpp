@@ -176,12 +176,14 @@ bool Graf::sprawdz_krawedz(int wierzcholek_poczatkowy, int wierzcholek_koncowy)
 }
 void Graf::algorytm_Prima()
 {
-	
+
 	int szukany_wierzcholek;
 	int najmniejsza_waga;
-	int najmniejszy_koszt_wierzcholek=0;
-	int ilosc_wierzcholkow_do_zbadania=ilosc_wierzcholkow;
+	int najmniejszy_koszt_wierzcholek = 0;
+	int ilosc_wierzcholkow_do_zbadania = ilosc_wierzcholkow;
 	bool czy_zbadany;
+	bool czy_zbadany_poczatkowy;
+	bool czy_zbadany_koncowy;
 	int suma = 0;
 	vector <int> wierzcholek;
 	zbadane_wierzcholki.clear();
@@ -194,9 +196,9 @@ void Graf::algorytm_Prima()
 	}
 	koszt_wierzcholka[0] = 0;
 	int badany_wierzcholek = 0;
-	for (int i = 0; i < ilosc_wierzcholkow-1; i++)
+	int* poprzednicy = new int[ilosc_wierzcholkow];
+	for (int i = 0; i < ilosc_wierzcholkow - 1; i++)
 	{
-		//macierz_wynikowa[badany_wierzcholek][i] = 1;
 		int najmniejsza_waga = 1000000;
 		zbadane_wierzcholki.push_back(badany_wierzcholek);
 		for (list<Krawedz>::iterator iter = lista_krawedzi.begin(); iter != lista_krawedzi.end(); iter++)
@@ -217,28 +219,30 @@ void Graf::algorytm_Prima()
 					if (czy_zbadany == false)
 					{
 						koszt_wierzcholka[iter->wierzcholek_poczatkowy] = iter->waga;
+						poprzednicy[iter->wierzcholek_poczatkowy] = iter->wierzcholek_koncowy;
 					}
-					
+
 				}
 				if (koszt_wierzcholka[iter->wierzcholek_koncowy] > iter->waga)
+				{
+					czy_zbadany = false;
+					for (int k = 0; k < zbadane_wierzcholki.size(); k++)
 					{
-						czy_zbadany = false;
-						for (int k = 0; k < zbadane_wierzcholki.size(); k++)
+						if (zbadane_wierzcholki[k] == iter->wierzcholek_koncowy)
 						{
-							if (zbadane_wierzcholki[k] == iter->wierzcholek_koncowy)
-							{
-								czy_zbadany = true;
-								break;
-							}
+							czy_zbadany = true;
+							break;
 						}
-						if (czy_zbadany == false)
-						{
-							koszt_wierzcholka[iter->wierzcholek_koncowy] = iter->waga;
-						}
-						
 					}
-				
-					
+					if (czy_zbadany == false)
+					{
+						koszt_wierzcholka[iter->wierzcholek_koncowy] = iter->waga;
+						poprzednicy[iter->wierzcholek_koncowy] = iter->wierzcholek_poczatkowy;
+					}
+
+				}
+
+
 			}
 		}
 		for (int j = 0; j < ilosc_wierzcholkow; j++)
@@ -261,124 +265,41 @@ void Graf::algorytm_Prima()
 				}
 			}
 		}
-		for (list<Krawedz>::iterator iter = lista_krawedzi.begin(); iter != lista_krawedzi.end(); iter++)
+		macierz_wynikowa[badany_wierzcholek][i] = 1;
+		macierz_wynikowa[poprzednicy[badany_wierzcholek]][i] = 1;
+		lista_wynikowa[badany_wierzcholek].push_back(poprzednicy[badany_wierzcholek]);
+		lista_wynikowa[poprzednicy[badany_wierzcholek]].push_back(badany_wierzcholek);
+	}
+		for (int i = 0; i < ilosc_wierzcholkow; i++)
 		{
-			if ((iter->wierzcholek_koncowy == badany_wierzcholek || iter->wierzcholek_poczatkowy==badany_wierzcholek) && iter->waga==koszt_wierzcholka[badany_wierzcholek])
+			suma += koszt_wierzcholka[i];
+		}
+
+		//Wypisanie wynikow
+		cout << "Minimalne drzewo rozpinajace:" << suma << endl << endl;
+		cout << "Macierz wynikowa:\n";
+		for (int i = 0; i < ilosc_wierzcholkow; i++)
+		{
+
+			for (int j = 0; j < ilosc_wierzcholkow - 1; j++)
 			{
-				macierz_wynikowa[iter->wierzcholek_poczatkowy][i] = 1;
-				macierz_wynikowa[iter->wierzcholek_koncowy][i] = 1;
-				lista_wynikowa[iter->wierzcholek_poczatkowy].push_back(iter->wierzcholek_koncowy);
-				lista_wynikowa[iter->wierzcholek_koncowy].push_back(iter->wierzcholek_poczatkowy);
-				break;
+				cout << macierz_wynikowa[i][j] << " ";
 			}
+			cout << endl;
 		}
-	}
-	for (int i = 0; i < ilosc_wierzcholkow; i++)
-	{
-		suma += koszt_wierzcholka[i];
-	}
-
-	//for (int i = 0; i < ilosc_wierzcholkow; i++)
-	//{
-	//	najmniejsza_waga = 100000;
-	//	for (int j = 0; j < ilosc_krawedzi; j++)
-	//	{
-	//		szukany_wierzcholek = 0;
-	//		czy_zbadany = false;
-	//		if (macierz_incydencji[najmniejszy_koszt_wierzcholek][j] == 1)
-	//		{	
-	//			//szukamy wierzcholka koncowego
-	//			while (true)
-	//			{
-	//				if(macierz_incydencji[szukany_wierzcholek][j]==1 && szukany_wierzcholek!=najmniejszy_koszt_wierzcholek)
-	//				break;
-	//				szukany_wierzcholek++;
-	//			}
-	//			//sprawdzamy czy zbadalismy juz wierzcholek
-	//			for (int h = 0; h < zbadane_wierzcholki.size(); h++)
-	//			{
-	//				if (szukany_wierzcholek == zbadane_wierzcholki[h])
-	//				{
-	//					czy_zbadany = true;
-	//					break;
-	//				}
-	//			}
-	//			//zmniejszamy koszt wierzcholka jesli znalezlismy "lepsza" krawedz i wierzcholek nie byl badany
-	//			if (wagi_krawedzi[j] < koszt_wierzcholka[szukany_wierzcholek] && czy_zbadany==false)
-	//			{
-	//				koszt_wierzcholka[szukany_wierzcholek] = wagi_krawedzi[j];
-	//			}
-	//		}
-
-
-	//	}
-	//	//dodajemy wierzcholek do zbadanych
-	//	zbadane_wierzcholki.push_back(najmniejszy_koszt_wierzcholek);
-
-	//	//ustawianie kolejnego badanego wierzcholka
-	//	for (int k = 0; k < ilosc_wierzcholkow; k++)
-	//	{
-	//		czy_zbadany = false;
-	//		if (koszt_wierzcholka[k] < najmniejsza_waga)
-	//		{
-	//			//sprawdzamy czy wierzcholek byl juz badany
-	//			for (int h = 0; h < zbadane_wierzcholki.size(); h++)
-	//			{
-	//				if (k == zbadane_wierzcholki[h])
-	//				{
-	//					czy_zbadany = true;
-	//					break;
-	//				}
-	//			}
-	//			if (czy_zbadany == false)
-	//			{
-	//				najmniejsza_waga = koszt_wierzcholka[k];
-	//				najmniejszy_koszt_wierzcholek = k;
-	//			}
-	//			
-	//		}
-	//			
-	//	}
-	// 
-		//ustawiamy w macierzy wierzcholek koncowy i poczatkowy na 1
-	//	for (list<Krawedz>::iterator iter = lista_krawedzi.begin(); iter != lista_krawedzi.end(); iter++)
-	//	{
-	//		if ((iter->wierzcholek_koncowy == najmniejszy_koszt_wierzcholek || iter->wierzcholek_poczatkowy) && iter->waga == najmniejsza_waga)
-	//		{
-	//			macierz_wynikowa[iter->wierzcholek_poczatkowy][i] = 1;
-	//			macierz_wynikowa[iter->wierzcholek_koncowy][i] = 1;
-	//			lista_wynikowa[iter->wierzcholek_poczatkowy].push_back(iter->wierzcholek_koncowy);
-	//			lista_wynikowa[iter->wierzcholek_koncowy].push_back(iter->wierzcholek_poczatkowy);
-	//			break;
-	//		}
-	//	}
-	//}
-	
-	//Wypisanie wynikow
-	cout << "Minimalne drzewo rozpinajace:"<<suma<<endl<<endl;
-	cout << "Macierz wynikowa:\n";
-	for (int i = 0; i < ilosc_wierzcholkow; i++)
-	{
-		
-		for (int j = 0; j < ilosc_wierzcholkow - 1; j++)
+		cout << endl;
+		cout << "Lista sasiedztwa wynikowa:\n";
+		for (int i = 0; i < ilosc_wierzcholkow; i++)
 		{
-			cout << macierz_wynikowa[i][j] << " ";
+			cout << "Wierzcholek " << i << ": ";
+			for (int j = 0; j < lista_wynikowa[i].size(); j++)
+			{
+				cout << lista_wynikowa[i][j] << " ";
+			}
+			cout << endl;
 		}
 		cout << endl;
 	}
-	cout << endl;
-	cout << "Lista sasiedztwa wynikowa:\n";
-	for (int i = 0; i < ilosc_wierzcholkow; i++)
-	{
-		cout << "Wierzcholek " << i << ": ";
-		for (int j = 0; j < lista_wynikowa[i].size(); j++)
-		{
-			cout << lista_wynikowa[i][j] << " ";
-		}
-		cout << endl;
-	}
-	cout << endl;
-}
 
 void Graf::algorytm_Kruskala()
 {	
